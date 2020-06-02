@@ -1,4 +1,24 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
+  background-color: #222831;
+  color: #fff;
+  font-family: 'Montserrat', sans-serif;
   margin: auto;
-  width: 500px;
+  text-align: center;
+  width: 450px;
+}
+
+@media (min-width: 768px) {
+  body {
+    width: 700px;
+  }
+}
+
+@media (min-width: 960px) {
+  body {
+    width: 940px;
+  }
 }

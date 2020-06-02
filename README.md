@@ -29,11 +29,11 @@
 
 **Estimate of time needed to complete:** 1 hour
 
-**Start time:** 14:10
+**Start time:** 15:42
 
-**Finish time:**
+**Finish time:** 16:32
 
-**Actual time needed to complete:**
+**Actual time needed to complete:** 50 min
 
 
 
