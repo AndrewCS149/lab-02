@@ -15,6 +15,7 @@ function Animals(obj) {
 
 Animals.prototype.render = function () {
   // grab element
+
   const $newSection = $(`<section data-render="dynamic">${photos}</section>`);
 
   $newSection.find('h2').text(this.title);
@@ -50,8 +51,25 @@ menu.on('change', function () {
   allAnimals.forEach(animal => {
     if (animal.keyword === this.value) {
       animal.render();
+    } else if (this.value === 'default') {
+      animal.render();
     }
   })
+})
+
+$('#sort-options').on('change', function () {
+  $('section[data-render="dynamic"]').remove();
+  if (this.value === 'title') {
+    allAnimals = allAnimals.sort(function (a, b) {
+      return a.title.localeCompare(b.title);
+    });
+    allAnimals.forEach(animal => animal.render());
+  } else {
+    allAnimals = allAnimals.sort(function (a, b) {
+      return b.horns - a.horns;
+    });
+    allAnimals.forEach(animal => animal.render());
+  }
 })
 
 // grab animal data from page-1.json
@@ -60,6 +78,9 @@ $.ajax('data/page-1.json', {
     dataType: 'JSON'
   })
   .then(data => {
+    data = data.sort(function (a, b) {
+      return a.title.localeCompare(b.title);
+    });
     data.forEach(animal => {
       new Animals(animal).render();
     });
