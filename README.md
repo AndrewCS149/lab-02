@@ -48,7 +48,7 @@
 
 ## Lab-03
 
-**Number and name of feature:**  # Pagination 
+**Number and name of feature:**  #1 Pagination 
 
 **Estimate of time needed to complete:** 1.5 hour
 
@@ -57,3 +57,15 @@
 **Finish time:** 14:30
 
 **Actual time needed to complete:** 45 min
+
+**Number and name of feature:**  #2 
+
+**Estimate of time needed to complete:** 1 hour
+
+**Start time:** 14:50
+
+**Finish time:** 15:15
+
+**Actual time needed to complete:** 25 min
+
+

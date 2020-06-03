@@ -16,16 +16,11 @@ function Animals(obj, arr) {
   arr.push(this);
 }
 
-Animals.prototype.render = function () {
+Animals.prototype.toHtml = function () {
 
   // grab element
-  const $newSection = $(`<section data-render="dynamic">${photos}</section>`);
-
-  $newSection.find('h2').text(this.title);
-  $newSection.find('p').text(this.description);
-  $newSection.find('img').attr('src', this.url).attr('alt', this.title);
-
-  $('main').append($newSection);
+  const template = $(`#template`).html();
+  $('main').append(Mustache.render(template, this));
 }
 
 // function to display the animal drop-down menu
@@ -33,13 +28,12 @@ const dropDown = () => {
 
   let keywords = [];
 
-  page1.forEach((animal, i) => {
+  page1.forEach(animal => {
     const $newOption = $('<option></option>');
-    if (!keywords.includes(`${page1[i].keyword}`)) {
-
-      $newOption.attr('value', `${page1[i].keyword}`);
-      $newOption.text(`${page1[i].keyword}`);
-      keywords.push(`${page1[i].keyword}`);
+    if (!keywords.includes(`${animal.keyword}`)) {
+      $newOption.attr('value', `${animal.keyword}`);
+      $newOption.text(`${animal.keyword}`);
+      keywords.push(`${animal.keyword}`);
       menu.append($newOption);
     }
   })
@@ -53,9 +47,9 @@ menu.on('change', function () {
 
   page1.forEach(animal => {
     if (animal.keyword === this.value) {
-      animal.render();
+      animal.toHtml();
     } else if (this.value === 'default') {
-      animal.render();
+      animal.toHtml();
     }
   })
 });
@@ -78,22 +72,22 @@ $('#sort-options').on('change', function () {
       return b.horns - a.horns;
     });
   }
-  return pageSwitch ? page1.forEach(animal => animal.render()) :
-    page2.forEach(animal => animal.render());
+  return pageSwitch ? page1.forEach(animal => animal.toHtml()) :
+    page2.forEach(animal => animal.toHtml());
 });
 
 // render page-1.json images when a right arrow is clicked
 $('.left').click(() => {
   pageSwitch = true;
   $('section[data-render="dynamic"]').remove();
-  page1.forEach(animal => animal.render())
+  page1.forEach(animal => animal.toHtml())
 })
 
 // render page-2.json images when a right arrow is clicked
 $('.right').click(() => {
   pageSwitch = false;
   $('section[data-render="dynamic"]').remove();
-  page2.forEach(animal => animal.render());
+  page2.forEach(animal => animal.toHtml());
 });
 
 // grab animal data from page-1.json
@@ -106,7 +100,7 @@ $.ajax('data/page-1.json', {
       return a.title.localeCompare(b.title);
     });
     data.forEach(animal => {
-      new Animals(animal, page1).render();
+      new Animals(animal, page1).toHtml();
     });
     dropDown();
   });
