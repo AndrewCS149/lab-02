@@ -33,7 +33,7 @@ h2 {
   display: none;
 }
 
-#animal-menu {
+select {
   border: none;
   background-color: #363b42;
   border-radius: 5px;
