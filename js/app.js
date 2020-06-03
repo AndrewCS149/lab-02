@@ -1,11 +1,10 @@
 'Use Strict';
-
+let page = [];
 let page1 = [];
 let page2 = [];
 let pageSwitch = true;
 
 const menu = $('#animal-menu');
-const photos = $('#photo-template').html();
 
 function Animals(obj, arr) {
   this.url = obj.image_url;
@@ -17,7 +16,6 @@ function Animals(obj, arr) {
 }
 
 Animals.prototype.toHtml = function () {
-
   // grab element
   const template = $(`#template`).html();
   $('main').append(Mustache.render(template, this));
@@ -25,16 +23,14 @@ Animals.prototype.toHtml = function () {
 
 // function to display the animal drop-down menu
 const dropDown = () => {
-
   let keywords = [];
-
-  page1.forEach(animal => {
-    const $newOption = $('<option></option>');
+  page1.forEach(x => page.push(x))
+  page2.forEach(x => page.push(x))
+  page.forEach(animal => {
+    const optionTemp = $('#option-template').html();
     if (!keywords.includes(`${animal.keyword}`)) {
-      $newOption.attr('value', `${animal.keyword}`);
-      $newOption.text(`${animal.keyword}`);
       keywords.push(`${animal.keyword}`);
-      menu.append($newOption);
+      menu.append(Mustache.render(optionTemp, animal));
     }
   })
 }
@@ -45,7 +41,7 @@ menu.on('change', function () {
 
   $('section[data-render="dynamic"]').remove();
 
-  page1.forEach(animal => {
+  page.forEach(animal => {
     if (animal.keyword === this.value) {
       animal.toHtml();
     } else if (this.value === 'default') {
@@ -102,7 +98,7 @@ $.ajax('data/page-1.json', {
     data.forEach(animal => {
       new Animals(animal, page1).toHtml();
     });
-    dropDown();
+    // dropDown();
   });
 
 // grab animal data from page-2.json
