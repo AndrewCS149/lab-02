@@ -47,6 +47,14 @@ footer {
   color: #444444;
 }
 
+span {
+  color: #d65a31;
+}
+
+span:hover {
+  color: #fff;
+}
+
 /* tablet mode */
 @media (min-width: 768px) {
   main {

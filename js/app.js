@@ -1,21 +1,24 @@
 'Use Strict';
 
-let allAnimals = [];
+let page1 = [];
+let page2 = [];
+let pageSwitch = true;
+
 const menu = $('#animal-menu');
 const photos = $('#photo-template').html();
 
-function Animals(obj) {
+function Animals(obj, arr) {
   this.url = obj.image_url;
   this.title = obj.title;
   this.description = obj.description;
   this.horns = obj.horns;
   this.keyword = obj.keyword;
-  allAnimals.push(this);
+  arr.push(this);
 }
 
 Animals.prototype.render = function () {
-  // grab element
 
+  // grab element
   const $newSection = $(`<section data-render="dynamic">${photos}</section>`);
 
   $newSection.find('h2').text(this.title);
@@ -30,13 +33,13 @@ const dropDown = () => {
 
   let keywords = [];
 
-  allAnimals.forEach((animal, i) => {
+  page1.forEach((animal, i) => {
     const $newOption = $('<option></option>');
-    if (!keywords.includes(`${allAnimals[i].keyword}`)) {
+    if (!keywords.includes(`${page1[i].keyword}`)) {
 
-      $newOption.attr('value', `${allAnimals[i].keyword}`);
-      $newOption.text(`${allAnimals[i].keyword}`);
-      keywords.push(`${allAnimals[i].keyword}`);
+      $newOption.attr('value', `${page1[i].keyword}`);
+      $newOption.text(`${page1[i].keyword}`);
+      keywords.push(`${page1[i].keyword}`);
       menu.append($newOption);
     }
   })
@@ -48,29 +51,50 @@ menu.on('change', function () {
 
   $('section[data-render="dynamic"]').remove();
 
-  allAnimals.forEach(animal => {
+  page1.forEach(animal => {
     if (animal.keyword === this.value) {
       animal.render();
     } else if (this.value === 'default') {
       animal.render();
     }
   })
-})
+});
 
+// filter the results based on which sort option is selected
 $('#sort-options').on('change', function () {
   $('section[data-render="dynamic"]').remove();
   if (this.value === 'title') {
-    allAnimals = allAnimals.sort(function (a, b) {
+    page1 = page1.sort(function (a, b) {
       return a.title.localeCompare(b.title);
     });
-    allAnimals.forEach(animal => animal.render());
+    page2 = page2.sort(function (a, b) {
+      return a.title.localeCompare(b.title);
+    });
   } else {
-    allAnimals = allAnimals.sort(function (a, b) {
+    page1 = page1.sort(function (a, b) {
       return b.horns - a.horns;
     });
-    allAnimals.forEach(animal => animal.render());
+    page2 = page2.sort(function (a, b) {
+      return b.horns - a.horns;
+    });
   }
+  return pageSwitch ? page1.forEach(animal => animal.render()) :
+    page2.forEach(animal => animal.render());
+});
+
+// render page-1.json images when a right arrow is clicked
+$('.left').click(() => {
+  pageSwitch = true;
+  $('section[data-render="dynamic"]').remove();
+  page1.forEach(animal => animal.render())
 })
+
+// render page-2.json images when a right arrow is clicked
+$('.right').click(() => {
+  pageSwitch = false;
+  $('section[data-render="dynamic"]').remove();
+  page2.forEach(animal => animal.render());
+});
 
 // grab animal data from page-1.json
 $.ajax('data/page-1.json', {
@@ -82,7 +106,22 @@ $.ajax('data/page-1.json', {
       return a.title.localeCompare(b.title);
     });
     data.forEach(animal => {
-      new Animals(animal).render();
+      new Animals(animal, page1).render();
     });
     dropDown();
+  });
+
+// grab animal data from page-2.json
+$.ajax('data/page-2.json', {
+    method: 'GET',
+    dataType: 'JSON'
   })
+  .then(data => {
+    data = data.sort(function (a, b) {
+      return a.title.localeCompare(b.title);
+    });
+    data.forEach(animal => {
+      new Animals(animal, page2)
+    });
+    dropDown();
+  });
