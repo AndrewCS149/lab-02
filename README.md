@@ -36,5 +36,13 @@
 **Actual time needed to complete:** 50 min
 
 
+**Number and name of feature:**  Stretch
 
+**Estimate of time needed to complete:** 1.5 hour
+
+**Start time:** 16:42
+
+**Finish time:** 17:30
+
+**Actual time needed to complete:** 48 min
 
