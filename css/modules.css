@@ -55,6 +55,22 @@ span:hover {
   color: #fff;
 }
 
+#modal {
+  position: fixed;
+  top: 20%;
+  background-color: #444444;
+  width: 50%;
+  height: 50%;
+  z-index: 1;
+}
+.modal{
+  transform: scale(2);
+}
+
+.hide {
+  display: none;
+}
+
 /* tablet mode */
 @media (min-width: 768px) {
   main {
@@ -71,11 +87,6 @@ span:hover {
     padding: 2px;
     margin: 2px;
     transition: linear 350ms;
-  }
-
-  [data-render='dynamic']:hover {
-    border: 1px solid #fff;
-    transform: scale(1.5);
   }
 }
 
@@ -95,10 +106,5 @@ span:hover {
     padding: 2px;
     margin: 2px;
     transition: linear 350ms;
-  }
-
-  [data-render='dynamic']:hover {
-    border: 1px solid #fff;
-    transform: scale(1.5);
   }
 }

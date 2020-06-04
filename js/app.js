@@ -15,11 +15,26 @@ function Animals(obj, arr) {
   arr.push(this);
 }
 
+// mustache templating to render new sections to the page 
 Animals.prototype.toHtml = function () {
   // grab element
   const template = $(`#template`).html();
   $('main').append(Mustache.render(template, this));
 }
+
+// Add click event to each image. When the image is clicked, 
+// its size increases and displays a more detailed view.
+$('#target').on('click', function () {
+  let clicked = event.target.parentNode.children[1].src;
+  console.log(event)
+  const template = $(`#template`).html();
+  $('#modal').empty().toggleClass('hide');
+  page.forEach(obj => {
+    if (obj.url === clicked) {
+      $('#modal').append(Mustache.render(template, obj))
+    }
+  })
+})
 
 // function to display the animal drop-down menu
 const dropDown = () => {

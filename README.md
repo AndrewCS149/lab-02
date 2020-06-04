@@ -58,7 +58,7 @@
 
 **Actual time needed to complete:** 45 min
 
-**Number and name of feature:**  #2 
+**Number and name of feature:**  #2 Template 
 
 **Estimate of time needed to complete:** 1 hour
 
@@ -68,4 +68,12 @@
 
 **Actual time needed to complete:** 25 min
 
+**Number and name of feature:**  Stretch #1
 
+**Estimate of time needed to complete:** 1 hour
+
+**Start time:** 16:00
+
+**Finish time:** 
+
+**Actual time needed to complete:**
