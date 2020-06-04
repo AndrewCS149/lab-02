@@ -46,3 +46,34 @@
 
 **Actual time needed to complete:** 48 min
 
+## Lab-03
+
+**Number and name of feature:**  #1 Pagination 
+
+**Estimate of time needed to complete:** 1.5 hour
+
+**Start time:** 13:45
+
+**Finish time:** 14:30
+
+**Actual time needed to complete:** 45 min
+
+**Number and name of feature:**  #2 Template 
+
+**Estimate of time needed to complete:** 1 hour
+
+**Start time:** 14:50
+
+**Finish time:** 15:15
+
+**Actual time needed to complete:** 25 min
+
+**Number and name of feature:**  Stretch #1
+
+**Estimate of time needed to complete:** 1 hour
+
+**Start time:** 16:00
+
+**Finish time:** 
+
+**Actual time needed to complete:**

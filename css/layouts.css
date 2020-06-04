@@ -4,6 +4,11 @@ img {
   width: 400px;
 }
 
+.flex {
+  display: flex;
+  justify-content: space-evenly;
+}
+
 @media (min-width: 768px) {
   img {
     width: 325px;

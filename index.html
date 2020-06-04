@@ -4,12 +4,27 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;600&display=swap" rel="stylesheet">
+  <!-- FontAwesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css"
+    integrity="sha384-Bfad6CLCknfcloXFOyFnlgtENryhrpZCe29RTifKEixXQZ38WheV+i/6YWSzkz3V" crossorigin="anonymous">
+
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/layouts.css">
   <link rel="stylesheet" href="css/modules.css">
-  <title>Document</title>
+  <title>The Gallery of Horns</title>
+  <script id="template" type="x-tmpl-mustache">
+    <section data-render="dynamic">
+      <h2>{{title}}</h2>
+      <img src="{{url}}" alt="{{title}}">
+      <p>{{description}}</p>
+    </section>
+  </script>
+  <script id="option-template" type="x-tmpl-mustache">
+    <option value="{{keyword}}">{{keyword}}</option>
+</script>
 </head>
 
 <body>
@@ -20,21 +35,38 @@
     </select>
 
     <select id="sort-options">
-      <option value="title">Filter by title</option>
-      <option value="number">Filter by number of horns</option>
+      <option value="title">Sort by title</option>
+      <option value="number">Sort by number of horns</option>
     </select>
   </header>
-  <main>
-    <section id="photo-template">
-      <h2></h2>
-      <img src="" alt="">
-      <p></p>
+  <div class="flex">
+    <span>
+      <i class="left fas fa-chevron-left fa-2x"></i>
+    </span>
+    <span>
+      <i class="right fas fa-chevron-right fa-2x"></i>
+    </span>
+  </div>
+  <main id="target">
+    <section id="modal" class="hide">
+
     </section>
   </main>
+  <div class=" flex">
+    <span>
+      <i class="left fas fa-chevron-left fa-2x"></i>
+    </span>
+    <span>
+      <i class="right fas fa-chevron-right fa-2x"></i>
+    </span>
+  </div>
   <footer>
     <p>&copy; 2020 Andrew Smith and Sean Murray</p>
   </footer>
+  <!-- jQuery -->
   <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+  <!-- Mustache -->
+  <script src="https://unpkg.com/mustache@latest"></script>
   <script src="js/app.js"></script>
 </body>
 

@@ -47,6 +47,30 @@ footer {
   color: #444444;
 }
 
+span {
+  color: #d65a31;
+}
+
+span:hover {
+  color: #fff;
+}
+
+#modal {
+  position: fixed;
+  top: 20%;
+  background-color: #444444;
+  width: 50%;
+  height: 50%;
+  z-index: 1;
+}
+.modal{
+  transform: scale(2);
+}
+
+.hide {
+  display: none;
+}
+
 /* tablet mode */
 @media (min-width: 768px) {
   main {
@@ -63,11 +87,6 @@ footer {
     padding: 2px;
     margin: 2px;
     transition: linear 350ms;
-  }
-
-  [data-render='dynamic']:hover {
-    border: 1px solid #fff;
-    transform: scale(1.5);
   }
 }
 
@@ -87,10 +106,5 @@ footer {
     padding: 2px;
     margin: 2px;
     transition: linear 350ms;
-  }
-
-  [data-render='dynamic']:hover {
-    border: 1px solid #fff;
-    transform: scale(1.5);
   }
 }
